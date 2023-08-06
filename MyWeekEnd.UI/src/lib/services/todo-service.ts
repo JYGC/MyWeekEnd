@@ -1,5 +1,5 @@
-import { getTodoCollection } from '../databases/database';
-import type { ITodoDTO } from './dtos';
+import { getTodoCollection } from '../data/database';
+import type { ITodoDTO } from '../dtos/todo-dtos';
 
 const todoCollection = getTodoCollection();
 

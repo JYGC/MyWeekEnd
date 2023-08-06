@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { newTodoDTO, type ITodoDTO } from "./dtos";
-  import { addTodo, deleteTodo, getTodos } from "./services";
+  import { newTodoDTO, type ITodoDTO } from "../../dtos/todo-dtos";
+  import { addTodo, deleteTodo, getTodos } from "../../services/todo-service";
 
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];

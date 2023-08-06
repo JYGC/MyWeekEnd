@@ -1,6 +1,8 @@
 import { JsonDB, Config } from 'node-json-db';
 import type { IDatabaseCollection } from './interfaces';
-import type { ITodoDTO } from '../Todo/dtos';
+import type { ITodoDTO } from '../dtos/todo-dtos';
+
+const database = null;
 
 interface ICollectionAccessor {
   Todos: ITodoDTO[];

@@ -5,7 +5,6 @@ export interface ITodoDTO {
   title: string;
   body: string;
   completed: boolean;
-  deleted: boolean;
 }
 
 export const newTodoDTO = (title: string, body: string): ITodoDTO => ({
