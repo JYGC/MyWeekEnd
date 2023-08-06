@@ -1,32 +1,30 @@
 <script lang="ts">
-  import { v4 as uuidv4 } from 'uuid';
-  import { Preferences } from '@capacitor/preferences';
+  import { newTodoDTO, type ITodoDTO } from "./dtos";
+  import { addTodo, deleteTodo, getTodos } from "./services";
 
   let newTodo = '';
+  let todos: Array<ITodoDTO> = [];
 
-  const getTodos = async () => {
-    const result = await Preferences.get
+  const putTodosOntoPage = async () => {
+    todos = await getTodos();
   };
 
-  const addNewTodo = async () => {
+  const addNewTodoButton = async () => {
     if (isNewTodoWhitespaceOrEmpty) return;
-    todos = [...todos, newTodo];
+    addTodo(newTodoDTO(newTodo, newTodo));
+    putTodosOntoPage();
     newTodo = '';
   };
 
-  const deleteTodoConfirmation = (index: number, todo: string) =>{
-    if (confirm(`Are you sure you want to delete todo item: '${todo}'?`))
-      deleteTodo(index);
-  }
-
-  const deleteTodo = (index: number) => {
-    todos.splice(index, 1);
-    todos = [...todos];
+  const deleteTodoConfirmation = (todo: ITodoDTO) =>{
+    if (!confirm(`Are you sure you want to delete todo item: '${todo._id}'?`)) return;
+    putTodosOntoPage();
+    deleteTodo(todo);
   }
 
   $: isNewTodoWhitespaceOrEmpty = typeof newTodo === 'undefined' || newTodo === null || newTodo.trim() === '';
 
-  let todos: Array<string> = [];
+  putTodosOntoPage();
 </script>
 
 Todos:
@@ -38,10 +36,10 @@ Todos:
     </tr>
   </thead>
   <tbody>
-    {#each todos as todo, index}
+    {#each todos as todo}
     <tr>
-      <td>{todo}</td>
-      <td><button on:click={() => deleteTodoConfirmation(index, todo)}>Remove</button></td>
+      <td>{todo.title} - {todo.body}</td>
+      <td><button on:click={() => deleteTodoConfirmation(todo)}>Remove</button></td>
     </tr>
     {/each}
   </tbody>
@@ -49,4 +47,4 @@ Todos:
 
 Enter new todo: <br />
 <textarea bind:value={newTodo} /> <!-- bind:value cause blank page in android -->
-<button on:click={addNewTodo} disabled={isNewTodoWhitespaceOrEmpty}>Add</button>
+<button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</button>
