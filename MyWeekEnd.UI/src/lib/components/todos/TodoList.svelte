@@ -5,26 +5,26 @@
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];
 
-  const putTodosOntoPage = async () => {
+  const listAllTodos = async () => {
     todos = await getTodos();
   };
 
   const addNewTodoButton = async () => {
     if (isNewTodoWhitespaceOrEmpty) return;
     addTodo(newTodoDTO(newTodo, newTodo));
-    putTodosOntoPage();
+    listAllTodos();
     newTodo = '';
   };
 
   const deleteTodoConfirmation = (todo: ITodoDTO) =>{
     if (!confirm(`Are you sure you want to delete todo item: '${todo._id}'?`)) return;
-    putTodosOntoPage();
+    listAllTodos();
     deleteTodo(todo);
   }
 
   $: isNewTodoWhitespaceOrEmpty = typeof newTodo === 'undefined' || newTodo === null || newTodo.trim() === '';
 
-  putTodosOntoPage();
+  listAllTodos();
 </script>
 
 Todos:
