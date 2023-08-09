@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { addStuff, getStuff } from "../../data/json-db";
   import { newTodoDTO, type ITodoDTO } from "../../dtos/todo-dtos";
   import { addTodo, deleteTodo, getTodos } from "../../services/todo-service";
 
@@ -25,6 +26,8 @@
   $: isNewTodoWhitespaceOrEmpty = typeof newTodo === 'undefined' || newTodo === null || newTodo.trim() === '';
 
   listAllTodos();
+
+  let testdata = null;
 </script>
 
 Todos:
@@ -46,5 +49,9 @@ Todos:
 </table>
 
 Enter new todo: <br />
-<textarea bind:value={newTodo} /> <!-- bind:value cause blank page in android -->
+<textarea bind:value={newTodo} />
 <button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</button>
+
+<button on:click={addStuff}>Add stuff</button>
+<p>{testdata}</p>
+<button on:click={async () => {testdata = await getStuff()}}>Get stuff</button>

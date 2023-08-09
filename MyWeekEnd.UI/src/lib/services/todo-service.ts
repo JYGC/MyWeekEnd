@@ -1,4 +1,4 @@
-import { getTodoCollection } from '../data/database';
+import { getTodoCollection } from '../data/memory-storage';
 import type { ITodoDTO } from '../dtos/todo-dtos';
 
 const todoCollection = getTodoCollection();
