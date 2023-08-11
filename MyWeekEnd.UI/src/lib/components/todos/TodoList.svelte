@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { addStuff, getStuff } from "../../data/json-db";
-  import { newTodoDTO, type ITodoDTO } from "../../dtos/todo-dtos";
-  import { addTodo, deleteTodo, getTodos } from "../../services/todo-service";
+  import { type ITodoDTO } from "../../dtos/todo-dtos";
+  import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todo-service";
 
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];
 
   const listAllTodos = async () => {
-    todos = await getTodos();
+    todos = await getAllTodos();
+    console.log(todos);
   };
 
   const addNewTodoButton = async () => {
@@ -17,10 +17,14 @@
     newTodo = '';
   };
 
+  const editTodoButtonClick = async () => {
+    //
+  };
+
   const deleteTodoConfirmation = (todo: ITodoDTO) =>{
     if (!confirm(`Are you sure you want to delete todo item: '${todo._id}'?`)) return;
-    listAllTodos();
     deleteTodo(todo);
+    listAllTodos();
   }
 
   $: isNewTodoWhitespaceOrEmpty = typeof newTodo === 'undefined' || newTodo === null || newTodo.trim() === '';
@@ -36,12 +40,14 @@ Todos:
     <tr>
       <th>Todo</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {#each todos as todo}
     <tr>
-      <td>{todo.title} - {todo.body}</td>
+      <td>{todo.body}</td>
+      <td><button disabled on:click={() => editTodoButtonClick(todo)}>Edit</button></td>
       <td><button on:click={() => deleteTodoConfirmation(todo)}>Remove</button></td>
     </tr>
     {/each}
@@ -51,7 +57,3 @@ Todos:
 Enter new todo: <br />
 <textarea bind:value={newTodo} />
 <button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</button>
-
-<button on:click={addStuff}>Add stuff</button>
-<p>{testdata}</p>
-<button on:click={async () => {testdata = await getStuff()}}>Get stuff</button>

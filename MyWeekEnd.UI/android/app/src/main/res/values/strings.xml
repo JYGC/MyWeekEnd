@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MyWeekEnd</string>
+    <string name="title_activity_main">MyWeekEnd</string>
+    <string name="package_name">com.snailz.myweekend</string>
+    <string name="custom_url_scheme">com.snailz.myweekend</string>
+</resources>

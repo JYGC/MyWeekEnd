@@ -24,7 +24,7 @@
     "@capacitor/cli": "^5.2.2",
     "@capacitor/core": "^5.2.2",
     "@capacitor/ios": "^5.2.2",
-    "node-json-db": "^2.2.0",
+    "@capacitor/preferences": "^5.0.6",
     "uuid": "^9.0.0"
   }
 }
