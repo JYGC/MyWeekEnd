@@ -18,11 +18,11 @@
 </script>
 
 {#if currentRoute === 'List'}
-<TodoList on:editTodoButtonClick={gotoEdit} />
+<TodoList on:editTodoButtonClick={gotoEdit} on:addTodoButtonClick={gotoAdd} />
 {/if}
 
 {#if currentRoute === 'Add'}
-<TodoAdd />
+<TodoAdd on:backToTodoListClick={gotoList} />
 {/if}
 
 {#if currentRoute === 'Edit'}

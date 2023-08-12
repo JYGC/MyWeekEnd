@@ -13,36 +13,31 @@
     console.log(todos);
   };
 
-  const addNewTodoButton = async () => {
-    if (isNewTodoWhitespaceOrEmpty) return;
-    addTodo(newTodoDTO(newTodo, newTodo));
-    listAllTodos();
-    newTodo = '';
-  };
-
   const dispatch = createEventDispatcher();
+
+  const addTodoButtonClick = async () => {
+    dispatch('addTodoButtonClick');
+  };
 
   const editTodoButtonClick = (todo: ITodoDTO) => {
     dispatch('editTodoButtonClick', {todo});
   };
-
-  const deleteTodoConfirmation = (todo: ITodoDTO) =>{
-    if (!confirm(`Are you sure you want to delete todo item: '${todo._id}'?`)) return;
-    deleteTodo(todo);
-    listAllTodos();
-  }
-
-  $: isNewTodoWhitespaceOrEmpty = typeof newTodo === 'undefined' || newTodo === null || newTodo.trim() === '';
 
   onMount(() => {
     listAllTodos();
   });
 </script>
 
-<Tile >Todos:</Tile>
+<h4>Your Todo List</h4>
 {#each todos as todo}
 <ClickableTile on:click={() => editTodoButtonClick(todo)}>{todo.title}</ClickableTile>
 {/each}
-Enter new todo: <br />
-<textarea bind:value={newTodo} />
-<Button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty} icon={Add} />
+<Button on:click={addTodoButtonClick} iconDescription='Add new Todo' icon={Add} />
+
+<style lang="scss">
+  h4 {
+    background-color: #1c2c4b;
+    font-weight: bold;
+    padding: 15px;
+  }
+</style>

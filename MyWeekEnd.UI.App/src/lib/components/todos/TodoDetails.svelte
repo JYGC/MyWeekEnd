@@ -6,15 +6,13 @@
   export let todo: ITodoDTO = newTodoDTO('', '');
 </script>
 
-<TextInput labelText="Title" placeholder="Todo title..." bind:value={todo.title} />
-<TextArea labelText="Description" placeholder="Description..." bind:value={todo.description} />
-<div class="date-picker">
-  <DatePicker datePickerType="single" on:change>
+<div class="todo-details">
+  <TextInput labelText="Title" placeholder="Todo title..." bind:value={todo.title} />
+  <TextArea labelText="Description" placeholder="Description..." bind:value={todo.description} />
+  <DatePicker datePickerType="single" on:change class="test">
     <DatePickerInput labelText="Due date" placeholder="dd/mm/yyyy" />
   </DatePicker>
-</div>
-<div class="time-picker">
-  <TimePicker labelText="and time" placeholder="hh:mm">
+  <TimePicker labelText="Due time" placeholder="hh:mm">
     <TimePickerSelect value="pm">
       <SelectItem value="am" text="AM" />
       <SelectItem value="pm" text="PM" />
@@ -23,7 +21,7 @@
 </div>
 
 <style lang="scss">
-  .date-picker, .time-picker {
-    display:inline-block;
+  .todo-details > :global(*) {
+    margin-top: 20px;
   }
 </style>
