@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { Button } from 'carbon-components-svelte';
 
-  let todo: ITodoDTO;
+  export let todo: ITodoDTO;
 
   const dispatch = createEventDispatcher();
 

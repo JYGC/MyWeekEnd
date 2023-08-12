@@ -2,7 +2,7 @@
 	import { onMount, createEventDispatcher } from "svelte";
   import type { ITodoDTO } from "../../dtos/todos";
   import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todos";
-  import { Button } from "carbon-components-svelte";
+  import { Button, ClickableTile, Tile } from "carbon-components-svelte";
   import Add from "carbon-icons-svelte/lib/Add.svelte";
 
   let newTodo = '';
@@ -23,7 +23,7 @@
   const dispatch = createEventDispatcher();
 
   const editTodoButtonClick = (todo: ITodoDTO) => {
-    dispatch('editTodoButtonClick');
+    dispatch('editTodoButtonClick', {todo});
   };
 
   const deleteTodoConfirmation = (todo: ITodoDTO) =>{
@@ -39,26 +39,10 @@
   });
 </script>
 
-Todos:
-<table>
-  <thead>
-    <tr>
-      <th>Todo</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {#each todos as todo}
-    <tr>
-      <td>{todo.title}</td>
-      <td><Button on:click={() => editTodoButtonClick(todo)}>Edit</Button></td>
-      <td><Button on:click={() => deleteTodoConfirmation(todo)}>Remove</Button></td>
-    </tr>
-    {/each}
-  </tbody>
-</table>
-
+<Tile >Todos:</Tile>
+{#each todos as todo}
+<ClickableTile on:click={() => editTodoButtonClick(todo)}>{todo.title}</ClickableTile>
+{/each}
 Enter new todo: <br />
 <textarea bind:value={newTodo} />
 <Button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty} icon={Add} />

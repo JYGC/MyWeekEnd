@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const todoKeyWord = 'todo';
 
-export const newTodoDTO = (title: string, body: string): ITodoDTO => ({
+export const newTodoDTO = (title: string, description: string): ITodoDTO => ({
   _id: `${todoKeyWord}/${uuidv4()}`,
   title: title,
-  description: body,
+  description: description,
   completed: false
 });
 
