@@ -3,6 +3,7 @@
   import type { ITodoDTO } from "../../dtos/todos";
   import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todos";
   import { Button } from "carbon-components-svelte";
+  import Add from "carbon-icons-svelte/lib/Add.svelte";
 
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];
@@ -60,4 +61,4 @@ Todos:
 
 Enter new todo: <br />
 <textarea bind:value={newTodo} />
-<Button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</Button>
+<Button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty} icon={Add} />

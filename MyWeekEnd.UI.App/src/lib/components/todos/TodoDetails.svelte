@@ -8,14 +8,22 @@
 
 <TextInput labelText="Title" placeholder="Todo title..." bind:value={todo.title} />
 <TextArea labelText="Description" placeholder="Description..." bind:value={todo.description} />
-<div>
+<div class="date-picker">
   <DatePicker datePickerType="single" on:change>
-    <DatePickerInput labelText="Due date" placeholder="mm/dd/yyyy" />
+    <DatePickerInput labelText="Due date" placeholder="dd/mm/yyyy" />
   </DatePicker>
-  <TimePicker labelText="Due time" placeholder="hh:mm">
+</div>
+<div class="time-picker">
+  <TimePicker labelText="and time" placeholder="hh:mm">
     <TimePickerSelect value="pm">
       <SelectItem value="am" text="AM" />
       <SelectItem value="pm" text="PM" />
     </TimePickerSelect>
   </TimePicker>
 </div>
+
+<style lang="scss">
+  .date-picker, .time-picker {
+    display:inline-block;
+  }
+</style>
