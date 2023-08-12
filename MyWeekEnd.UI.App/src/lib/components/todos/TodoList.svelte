@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { beforeUpdate, onMount } from "svelte";
-  import type { ITodoDTO } from "../../dtos/todo-dtos";
-  import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todo-service";
+	import { onMount } from "svelte";
+  import type { ITodoDTO } from "../../dtos/todos";
+  import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todos";
 
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];
@@ -47,7 +47,7 @@ Todos:
   <tbody>
     {#each todos as todo}
     <tr>
-      <td>{todo.body}</td>
+      <td>{todo.title}</td>
       <td><button disabled on:click={() => editTodoButtonClick(todo)}>Edit</button></td>
       <td><button on:click={() => deleteTodoConfirmation(todo)}>Remove</button></td>
     </tr>

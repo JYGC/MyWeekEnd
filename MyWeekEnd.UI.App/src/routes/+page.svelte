@@ -1,7 +1,7 @@
 <script lang="ts">
-  import TodoList from '../lib/components/todos/TodoList.svelte';
+  import TodoScreen from '../lib/components/todos/TodoScreen.svelte';
 </script>
 
 <main>
-  <TodoList />
+  <TodoScreen />
 </main>

@@ -1,5 +1,5 @@
 import { Preferences } from '@capacitor/preferences';
-import type { ITodoDTO } from '../dtos/todo-dtos';
+import type { ITodoDTO } from '../dtos/todos';
 import { v4 as uuidv4 } from 'uuid';
 
 export const todoKeyWord = 'todo';
@@ -7,7 +7,7 @@ export const todoKeyWord = 'todo';
 export const newTodoDTO = (title: string, body: string): ITodoDTO => ({
   _id: `${todoKeyWord}/${uuidv4()}`,
   title: title,
-  body: body,
+  description: body,
   completed: false
 });
 
@@ -30,7 +30,7 @@ export const getAllTodos = async (): Promise<ITodoDTO[]> => {
     const todo: ITodoDTO = todoJson === null ? { _id: keys[i] } : JSON.parse(todoJson);
     todos.push(todo);
   }
-  return sortByProperty(todos, t => t.body);
+  return sortByProperty(todos, t => t.description);
 };
 
 const sortByProperty = <T,>(array: T[], getPropertyToSortByFunction: (element: T) => any): T[] => {
