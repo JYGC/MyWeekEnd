@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { describe } from 'vitest';
 	import type { ITodoDTO } from "../../dtos/todos";
 
   let todo: ITodoDTO;
