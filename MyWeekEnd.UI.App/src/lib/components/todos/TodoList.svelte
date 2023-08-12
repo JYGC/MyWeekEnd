@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount, createEventDispatcher } from "svelte";
   import type { ITodoDTO } from "../../dtos/todos";
   import { addTodo, deleteTodo, getAllTodos, newTodoDTO } from "../../services/todos";
+  import { Button } from "carbon-components-svelte";
 
   let newTodo = '';
   let todos: Array<ITodoDTO> = [];
@@ -18,8 +19,10 @@
     newTodo = '';
   };
 
-  const editTodoButtonClick = async (todo: ITodoDTO) => {
-    //
+  const dispatch = createEventDispatcher();
+
+  const editTodoButtonClick = (todo: ITodoDTO) => {
+    dispatch('editTodoButtonClick');
   };
 
   const deleteTodoConfirmation = (todo: ITodoDTO) =>{
@@ -48,8 +51,8 @@ Todos:
     {#each todos as todo}
     <tr>
       <td>{todo.title}</td>
-      <td><button disabled on:click={() => editTodoButtonClick(todo)}>Edit</button></td>
-      <td><button on:click={() => deleteTodoConfirmation(todo)}>Remove</button></td>
+      <td><Button on:click={() => editTodoButtonClick(todo)}>Edit</Button></td>
+      <td><Button on:click={() => deleteTodoConfirmation(todo)}>Remove</Button></td>
     </tr>
     {/each}
   </tbody>
@@ -57,4 +60,4 @@ Todos:
 
 Enter new todo: <br />
 <textarea bind:value={newTodo} />
-<button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</button>
+<Button on:click={addNewTodoButton} disabled={isNewTodoWhitespaceOrEmpty}>Add</Button>
