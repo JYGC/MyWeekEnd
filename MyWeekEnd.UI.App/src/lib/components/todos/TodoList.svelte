@@ -32,12 +32,21 @@
 {#each todos as todo}
 <ClickableTile on:click={() => editTodoButtonClick(todo)}>{todo.title}</ClickableTile>
 {/each}
-<Button on:click={addTodoButtonClick} iconDescription='Add new Todo' icon={Add} />
+<div class="todo-add-container">
+  <Button class="todo-add" tooltipPosition="left" on:click={addTodoButtonClick} iconDescription='Add new Todo' icon={Add} />
+</div>
 
 <style lang="scss">
   h4 {
     background-color: #1c2c4b;
     font-weight: bold;
     padding: 15px;
+  }
+
+  .todo-add-container {
+    position: fixed;
+    bottom: 5vh;
+    right: 5vh;
+    z-index:100;
   }
 </style>

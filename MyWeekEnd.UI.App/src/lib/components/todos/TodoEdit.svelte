@@ -26,19 +26,19 @@ const deleteTodoConfirmationClick = async () => {
 }
 </script>
 
-<div class="edit-todo-tab">
+<div class="edit-todo-bar">
   <Button on:click={backToTodoListClick} kind="secondary">Back to your todo list</Button>
-  <Button class="save-todo" on:click={deleteTodoConfirmationClick}>Save</Button>
+  <Button class="save-todo" on:click={saveChangesClick}>Save</Button>
 </div>
 <div class="todo-details">
   <TodoDetails bind:todo={todo} />
 </div>
 <div class="todo-delete">
-  <Button on:click={saveChangesClick} kind="danger-tertiary" iconDescription="Delete this Todo" icon={TrashCan} />
+  <Button on:click={deleteTodoConfirmationClick} kind="danger-tertiary" iconDescription="Delete this Todo" icon={TrashCan} />
 </div>
 
 <style lang="scss">
-  .edit-todo-tab {
+  .edit-todo-bar {
     position: fixed;
     top: 0;
     width:100%;
@@ -46,7 +46,7 @@ const deleteTodoConfirmationClick = async () => {
     background-color: rgb(31, 31, 31);
   }
   
-  .edit-todo-tab {
+  .edit-todo-bar {
     > :global(.save-todo) {
       float: right;
     }

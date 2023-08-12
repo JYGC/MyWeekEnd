@@ -19,7 +19,7 @@
   };
 </script>
 
-<div class="add-todo-tab">
+<div class="add-todo-bar">
   <Button on:click={backToTodoListClick} kind="secondary">Back to your todo list</Button>
   <Button class="save-todo" on:click={saveChangesClick}>Save</Button>
 </div>
@@ -28,7 +28,7 @@
 </div>
 
 <style lang="scss">
-  .add-todo-tab {
+  .add-todo-bar {
     position: fixed;
     top: 0;
     width:100%;
@@ -36,7 +36,7 @@
     background-color: rgb(31, 31, 31);
   }
   
-  .add-todo-tab {
+  .add-todo-bar {
     > :global(.save-todo) {
       float: right;
     }
