@@ -4,6 +4,8 @@
 	import { Button } from 'carbon-components-svelte';
 	import type { ITodoDTO } from '../../dtos/todos';
 	import { addTodo, newTodoDTO } from '$lib/services/todos';
+	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
+	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
   let todo: ITodoDTO = newTodoDTO('', '');
 
@@ -20,8 +22,8 @@
 </script>
 
 <div class="add-todo-bar">
-  <Button on:click={backToTodoListClick} kind="secondary">Back to your todo list</Button>
-  <Button class="save-todo" on:click={saveChangesClick}>Save</Button>
+  <Button class="back" on:click={backToTodoListClick} kind="secondary" icon={Catalog}>Todo list</Button>
+  <Button class="save-todo" on:click={saveChangesClick} icon={Save}>Save</Button>
 </div>
 <div class="todo-details">
 	<TodoDetails bind:todo={todo} />
@@ -33,12 +35,16 @@
     top: 0;
     width:100%;
     z-index:100;
-    background-color: rgb(31, 31, 31);
   }
   
   .add-todo-bar {
-    > :global(.save-todo) {
+    :global(.save-todo) {
       float: right;
+    }
+
+    :global(.save-todo),
+    :global(.back) {
+      width: 50vw;
     }
   }
 

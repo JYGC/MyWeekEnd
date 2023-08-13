@@ -4,7 +4,9 @@
 	import { createEventDispatcher } from "svelte";
 	import { addTodo, deleteTodo } from './../../services/todos';
 	import { Button } from 'carbon-components-svelte';
-  import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
+  import TrashCan from 'carbon-icons-svelte/lib/TrashCan.svelte';
+	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
+	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
   export let todo: ITodoDTO;
 
@@ -27,14 +29,14 @@ const deleteTodoConfirmationClick = async () => {
 </script>
 
 <div class="edit-todo-bar">
-  <Button on:click={backToTodoListClick} kind="secondary">Back to your todo list</Button>
-  <Button class="save-todo" on:click={saveChangesClick}>Save</Button>
+  <Button class="back" on:click={backToTodoListClick} kind="secondary" icon={Catalog}>Todo list</Button>
+  <Button class="save-todo" on:click={saveChangesClick} icon={Save}>Save</Button>
 </div>
 <div class="todo-details">
   <TodoDetails bind:todo={todo} />
 </div>
 <div class="todo-delete">
-  <Button on:click={deleteTodoConfirmationClick} kind="danger-tertiary" iconDescription="Delete this Todo" icon={TrashCan} />
+  <Button on:click={deleteTodoConfirmationClick} kind="danger-tertiary" tooltipPosition="right" iconDescription="Delete this Todo" icon={TrashCan} />
 </div>
 
 <style lang="scss">
@@ -43,12 +45,16 @@ const deleteTodoConfirmationClick = async () => {
     top: 0;
     width:100%;
     z-index:100;
-    background-color: rgb(31, 31, 31);
   }
   
   .edit-todo-bar {
-    > :global(.save-todo) {
+    :global(.save-todo) {
       float: right;
+    }
+
+    :global(.save-todo),
+    :global(.back) {
+      width: 50vw;
     }
   }
 
