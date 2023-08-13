@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { initDatabase } from "../../database/mobile";
+	import { initDatabase } from "../../mobile/database";
 
   let result: any = null;
   let errors: any = null;
