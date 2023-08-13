@@ -5,13 +5,14 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"build:mobile": "vite build && npx cap sync && npx cap open android",
+		"build:mobile": "npm run build && npx cap sync && npx cap open android",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"copysqlwasm": "copyfiles -u 3 node_modules/sql.js/dist/sql-wasm.wasm build/_app/immutable/assets"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
@@ -22,6 +23,7 @@
 		"@typescript-eslint/parser": "^5.45.0",
 		"carbon-components-svelte": "^0.79.0",
 		"carbon-icons-svelte": "^12.1.0",
+		"copyfiles": "^2.4.1",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
@@ -37,11 +39,17 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@capacitor-community/sqlite": "^5.0.7-2",
 		"@capacitor/android": "^5.2.3",
 		"@capacitor/cli": "^5.2.3",
 		"@capacitor/core": "^5.2.3",
 		"@capacitor/ios": "^5.2.3",
 		"@capacitor/preferences": "^5.0.6",
+		"@types/node": "^20.4.10",
+		"jeep-sqlite": "^2.4.1",
+		"reflect-metadata": "^0.1.13",
+		"sql.js": "^1.8.0",
+		"typeorm": "^0.3.17",
 		"uuid": "^9.0.0"
 	}
 }
