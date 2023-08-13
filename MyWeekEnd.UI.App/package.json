@@ -22,7 +22,6 @@
 		"@typescript-eslint/parser": "^6.3.0",
 		"carbon-components-svelte": "^0.79.0",
 		"carbon-icons-svelte": "^12.1.0",
-		"copyfiles": "^2.4.1",
 		"eslint": "^8.47.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.32.4",
