@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const todoKeyWord = 'todo';
 
 export const newTodoDTO = (title: string, description: string): ITodoDTO => ({
-  _id: `${todoKeyWord}/${uuidv4()}`,
+  id: `${todoKeyWord}/${uuidv4()}`,
   title: title,
   description: description,
   completed: false
@@ -13,13 +13,13 @@ export const newTodoDTO = (title: string, description: string): ITodoDTO => ({
 
 export const addTodo = async (newTodo: ITodoDTO) => {
   await Preferences.set({
-    key: newTodo._id,
+    key: newTodo.id,
     value: JSON.stringify(newTodo),
   });
 };
 
 export const deleteTodo = async (todo: ITodoDTO) => {
-  await Preferences.remove({ key: todo._id });
+  await Preferences.remove({ key: todo.id });
 };
 
 export const getAllTodos = async (): Promise<ITodoDTO[]> => {
@@ -27,7 +27,7 @@ export const getAllTodos = async (): Promise<ITodoDTO[]> => {
   const todos = [];
   for (let i = 0; i < keys.length; i++) {
     const todoJson = (await Preferences.get({ key: keys[i] })).value;
-    const todo: ITodoDTO = todoJson === null ? { _id: keys[i] } : JSON.parse(todoJson);
+    const todo: ITodoDTO = todoJson === null ? { id: keys[i] } : JSON.parse(todoJson);
     todos.push(todo);
   }
   return sortByProperty(todos, t => t.description);

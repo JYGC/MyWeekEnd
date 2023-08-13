@@ -20,7 +20,7 @@
   };
 
 const deleteTodoConfirmationClick = async () => {
-  if (!confirm(`Are you sure you want to delete todo item: '${todo._id}'?`)) return;
+  if (!confirm(`Are you sure you want to delete todo item: '${todo.id}'?`)) return;
   await deleteTodo(todo);
   dispatch('backToTodoListClick');
 }
