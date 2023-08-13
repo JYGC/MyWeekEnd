@@ -46,9 +46,7 @@
 		"@capacitor/ios": "^5.2.3",
 		"@capacitor/preferences": "^5.0.6",
 		"@types/node": "^20.4.10",
-		"jeep-sqlite": "^2.4.1",
 		"reflect-metadata": "^0.1.13",
-		"sql.js": "^1.8.0",
 		"typeorm": "^0.3.17",
 		"uuid": "^9.0.0"
 	}
