@@ -1,5 +1,6 @@
 import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 import { DataSource } from 'typeorm';
+import { Todo } from './entities';
 
 export const initDatabase = async () => {
   try {
@@ -8,7 +9,8 @@ export const initDatabase = async () => {
     const AppDataSource = new DataSource({
       type: 'capacitor',
       driver: sqliteConnection,
-      database: 'inijhoi'
+      database: 'MyWeekEnd',
+      entities: [Todo]
     });
 
     await AppDataSource.initialize();

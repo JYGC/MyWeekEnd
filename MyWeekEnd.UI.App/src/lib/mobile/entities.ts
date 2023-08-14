@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
-@Entity()
+@Entity('Todo')
 export class Todo {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('text')
   title: string;
   
-  @Column()
+  @Column('text')
   description: string;
   
-  @Column()
+  @Column('integer')
   createddate: number;
 
-  @Column()
+  @Column('integer')
   duedate: number;
 }
