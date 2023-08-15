@@ -1,4 +1,4 @@
-export interface ITodoDTO {
+export interface ITodoListDTO {
   id: string;
   title: string;
   description: string;

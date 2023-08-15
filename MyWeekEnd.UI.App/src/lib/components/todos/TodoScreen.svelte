@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ITodoDTO } from "$lib/dtos/todos";
+	import type { ITodoListDTO } from "$lib/dtos/todos";
 	import TodoAdd from "./TodoAdd.svelte";
 	import TodoEdit from "./TodoEdit.svelte";
 	import TodoList from "./TodoList.svelte";
@@ -7,7 +7,7 @@
 	type ROUTE = 'List' | 'Add' | 'Edit';
 	let currentRoute: ROUTE = 'List';
 
-	let selectedTodo: ITodoDTO;
+	let selectedTodo: ITodoListDTO;
 
 	const gotoList = () => { currentRoute = 'List'; };
 	const gotoAdd = () => { currentRoute = 'Add'; };

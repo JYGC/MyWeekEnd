@@ -2,12 +2,12 @@
 	import TodoDetails from './TodoDetails.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { Button } from 'carbon-components-svelte';
-	import type { ITodoDTO } from '../../dtos/todos';
+	import type { ITodoListDTO } from '../../dtos/todos';
 	import { addTodo, newTodoDTO } from '$lib/services/todos';
 	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
-  let todo: ITodoDTO = newTodoDTO('', '');
+  let todo: ITodoListDTO = newTodoDTO('', '');
 
   const dispatch = createEventDispatcher();
 
