@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from "svelte";
-  import type { ITodoDTO } from "../../dtos/todos";
+  import type { ITodoListDTO } from "../../dtos/todos";
   import { getAllTodos } from "../../services/todos";
   import { Button, ClickableTile } from "carbon-components-svelte";
   import AddAlt from "carbon-icons-svelte/lib/AddAlt.svelte";
 
-  let todos: Array<ITodoDTO> = [];
+  let todos: Array<ITodoListDTO> = [];
 
   const listAllTodos = async () => {
     todos = await getAllTodos();
@@ -18,7 +18,7 @@
     dispatch('addTodoButtonClick');
   };
 
-  const editTodoButtonClick = (todo: ITodoDTO) => {
+  const editTodoButtonClick = (todo: ITodoListDTO) => {
     dispatch('editTodoButtonClick', {todo});
   };
 

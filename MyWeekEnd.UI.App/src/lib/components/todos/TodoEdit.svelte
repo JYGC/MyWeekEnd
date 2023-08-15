@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TodoDetails from './TodoDetails.svelte';
-	import type { ITodoDTO } from './../../dtos/todos';
+	import type { ITodoListDTO } from './../../dtos/todos';
 	import { createEventDispatcher } from "svelte";
 	import { addTodo, deleteTodo } from './../../services/todos';
 	import { Button } from 'carbon-components-svelte';
@@ -8,7 +8,7 @@
 	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
-  export let todo: ITodoDTO;
+  export let todo: ITodoListDTO;
 
   const dispatch = createEventDispatcher();
 

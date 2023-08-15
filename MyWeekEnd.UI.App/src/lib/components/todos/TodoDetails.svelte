@@ -1,9 +1,9 @@
 <script lang="ts">
   import { DatePicker, DatePickerInput, SelectItem, TextArea, TextInput, TimePicker, TimePickerSelect } from "carbon-components-svelte";
 	import { newTodoDTO } from "$lib/services/todos";
-	import type { ITodoDTO } from "../../dtos/todos";
+	import type { ITodoListDTO } from "../../dtos/todos";
 
-  export let todo: ITodoDTO = newTodoDTO('', '');
+  export let todo: ITodoListDTO = newTodoDTO('', '');
 </script>
 
 <div class="todo-details">

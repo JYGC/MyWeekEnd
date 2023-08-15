@@ -1,12 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
 
 @Entity('Todo')
-export class Todo {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Todo extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column('text')
-  title: string;
+  name: string;
   
   @Column('text')
   description: string;
