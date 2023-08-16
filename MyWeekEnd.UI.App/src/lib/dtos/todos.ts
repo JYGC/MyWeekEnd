@@ -3,4 +3,6 @@ export interface ITodoListDTO {
   title: string;
   description: string;
   completed: boolean;
+  duedate: Date;
+  createddate: Date;
 }
