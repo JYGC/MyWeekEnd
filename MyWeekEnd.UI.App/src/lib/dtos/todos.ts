@@ -1,8 +1,8 @@
 export interface ITodoListDTO {
   id: string;
   title: string;
+  name: string;
   description: string;
-  completed: boolean;
-  duedate: Date;
-  createddate: Date;
+  dueDate: Date;
+  createdDate: Date;
 }
