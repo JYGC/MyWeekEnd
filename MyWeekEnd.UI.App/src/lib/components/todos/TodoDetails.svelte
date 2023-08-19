@@ -1,13 +1,12 @@
 <script lang="ts">
   import { DatePicker, DatePickerInput, SelectItem, TextArea, TextInput, TimePicker, TimePickerSelect } from "carbon-components-svelte";
-	import { newTodoDTO } from "$lib/services/todos";
-	import type { ITodoListDTO } from "../../dtos/todos";
+	import type { ITodoDetailDTO } from "../../dtos/todos";
 
-  export let todo: ITodoListDTO = newTodoDTO('', '');
+  export let todo: ITodoDetailDTO;
 </script>
 
 <div class="todo-details">
-  <TextInput labelText="Title" placeholder="Todo title..." bind:value={todo.title} />
+  <TextInput labelText="Name" placeholder="Todo name..." bind:value={todo.name} />
   <TextArea labelText="Description" placeholder="Description..." bind:value={todo.description} />
   <DatePicker datePickerType="single" on:change class="test">
     <DatePickerInput labelText="Due date" placeholder="dd/mm/yyyy" />

@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
+		"electron:start": "npm run build && npx cap sync electron && npx cap open electron",
 		"build": "vite build",
 		"build:mobile": "npm run build && npx cap sync && npx cap open android",
 		"preview": "vite preview",
@@ -37,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@capacitor-community/electron": "^4.1.2",
 		"@capacitor-community/sqlite": "^5.0.7-2",
 		"@capacitor/android": "^5.2.3",
 		"@capacitor/cli": "^5.2.3",

@@ -26,5 +26,5 @@
 {/if}
 
 {#if currentRoute === 'Edit'}
-<TodoEdit on:backToTodoListClick={gotoList} todo={selectedTodo} />
+<TodoEdit on:backToTodoListClick={gotoList} todoListDTO={selectedTodo} />
 {/if}

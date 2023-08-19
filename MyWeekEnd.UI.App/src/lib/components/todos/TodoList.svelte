@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from "svelte";
-  import type { ITodoListDTO } from "../../dtos/todos";
-  import { getAllTodos } from "../../services/todos";
+  import type { ITodoDTO, ITodoListDTO } from "../../dtos/todos";
+  import { getAllTodos, getTodoList, migrateTodos } from "../../services/todos";
   import { Button, ClickableTile } from "carbon-components-svelte";
   import AddAlt from "carbon-icons-svelte/lib/AddAlt.svelte";
+	import { establishDatabase } from "$lib/database";
 
   let todos: Array<ITodoListDTO> = [];
 
   const listAllTodos = async () => {
-    todos = await getAllTodos();
+    await establishDatabase();
+    todos = await getTodoList();
     console.log(todos);
   };
 
@@ -29,7 +31,7 @@
 
 <h4>Your Weekend Todo List</h4>
 {#each todos as todo}
-<ClickableTile on:click={() => editTodoButtonClick(todo)}>{todo.title}</ClickableTile>
+<ClickableTile on:click={() => editTodoButtonClick(todo)}>{todo.name}</ClickableTile>
 {/each}
 <div class="todo-add-container">
   <Button class="todo-add" on:click={addTodoButtonClick} size="xl" icon={AddAlt}>Add new Todo</Button>

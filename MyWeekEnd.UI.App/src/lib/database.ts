@@ -1,45 +1,41 @@
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite';
 
-class DatabaseAdapter {
-  private readonly __databaseName = 'MyWeekEnd.db';
+const databaseName = 'MyWeekEnd.db';
 
-  private __database: SQLiteDBConnection | null;
+let databaseConnection: SQLiteDBConnection;
 
-  constructor () {
-    this.__database = null;
-  }
+const initDatabaseAdapter = async () => {
+  const sqlite = new SQLiteConnection(CapacitorSQLite);
+  const database = await sqlite.createConnection(
+    databaseName, false, '', 0, false);
+  await database.open();
+  return database;
+};
 
-  public initDatabase = async () => {
-    const sqlite = new SQLiteConnection(CapacitorSQLite);
-    this.__database = await sqlite.createConnection(
-      this.__databaseName, false, '', 0, false)
+const initSchema = async (database: SQLiteDBConnection) => {
+  const createTodosTableQuery =
+    'CREATE TABLE IF NOT EXISTS Todos ('
+    + 'id INTEGER NOT NULL PRIMARY KEY, '
+    + 'name TEXT NOT NULL, '
+    + 'description TEXT NOT NULL, '
+    + 'dueDate INTEGER NOT NULL, '
+    + 'createdDate INTEGER NOT NULL);';
 
-    await this.__database.open();
-    
-    await this.__initSchema();
-  };
+  await database.execute(createTodosTableQuery);
+};
 
-  private __initSchema = async () => {
-    if (this.__database === null) throw new Error('Database is not initialized yet.');
-
-    const createTodosTableQuery =
-      'CREATE TABLE IF NOT EXISTS Todos ('
-      + 'id INTEGER NOT NULL PRIMARY KEY, '
-      + 'name TEXT NOT NULL, '
-      + 'description TEXT NOT NULL, '
-      + 'due_date INTEGER NOT NULL, '
-      + 'created_date INTEGER NOT NULL);';
-
-    await this.query(createTodosTableQuery);
-  };
-
-  public query = async (createTableQuery: string, params = []) => {
-    if (this.__database === null) throw new Error('Database is not initialized yet.');
-    return this.__database.query(createTableQuery, params);
-  };
+export const establishDatabase = async () => {
+  databaseConnection = await initDatabaseAdapter();
+  await initSchema(databaseConnection);
 }
 
-const databaseAdapter = new DatabaseAdapter();
-databaseAdapter.initDatabase();
+// (async () => {
+//   databaseConnection = await initDatabaseAdapter();
+//   await initSchema(databaseConnection);
+// })();
 
-export const getDatabaseAdapter = () => databaseAdapter;
+export const sendSqlQuery = async (statement: string, params: Array<string|number> = []) =>
+  await databaseConnection.query(statement, params);
+
+export const runSqlQuery = async (statement: string, params: Array<string|number> = []) =>
+  await databaseConnection.run(statement, params);

@@ -2,12 +2,12 @@
 	import TodoDetails from './TodoDetails.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { Button } from 'carbon-components-svelte';
-	import type { ITodoListDTO } from '../../dtos/todos';
-	import { addTodo, newTodoDTO } from '$lib/services/todos';
+	import type { ITodoDetailDTO } from '../../dtos/todos';
+	import { addTodo2, newTodoDetailDTO } from '../../services/todos';
 	import Catalog from 'carbon-icons-svelte/lib/Catalog.svelte';
 	import Save from 'carbon-icons-svelte/lib/Save.svelte';
 
-  let todo: ITodoListDTO = newTodoDTO('', '');
+  let todoDetailDTO: ITodoDetailDTO = newTodoDetailDTO();
 
   const dispatch = createEventDispatcher();
 
@@ -16,7 +16,7 @@
   };
 
   const saveChangesClick = async () => {
-    await addTodo(todo);
+    await addTodo2(todoDetailDTO);
     dispatch('backToTodoListClick');
   };
 </script>
@@ -26,7 +26,7 @@
   <Button class="save-todo" on:click={saveChangesClick} icon={Save}>Save</Button>
 </div>
 <div class="todo-details">
-	<TodoDetails bind:todo={todo} />
+	<TodoDetails bind:todo={todoDetailDTO} />
 </div>
 
 <style lang="scss">
